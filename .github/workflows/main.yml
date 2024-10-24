@@ -27,7 +27,7 @@ jobs:
           cd artifacts && ls
 
       - name: Save artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Atualizado para v3
         with:
           name: github-action-artifact
           path: artifacts
