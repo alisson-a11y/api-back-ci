@@ -1,10 +1,10 @@
-name: Java CI/CD with Maven - fatec
+name: Java CI/CD with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]  # Aciona o workflow quando há um push para a branch main
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]  # Aciona o workflow quando um pull request é aberto para a branch main
 
 jobs:
   build:
