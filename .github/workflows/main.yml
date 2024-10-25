@@ -20,7 +20,7 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: |
-          mvn clean install
+          mvn clean install-DskipTests=true
           mkdir artifacts && cp target/*.jar artifacts
           cd artifacts && ls
       - name: Save artifact
@@ -56,14 +56,3 @@ jobs:
           distribution: 'temurin'
       - name: Run tests
         run: mvn test
-
-  deploy:
-    needs: build
-    runs-on: [aws-ec2]
-    steps:
-      - name: Pull Image from Docker Hub
-        run: sudo docker pull alisson4/spring-boot-github-action-demo:latest
-      - name: Delete old container
-        run: sudo docker rm -f spring-boot-app-container || true  # Ignora se o container não existir
-      - name: Run Docker Image
-        run: sudo docker run -d -p 8080:8080 --name spring-boot-app-container alisson4/spring-boot-github-action-demo
